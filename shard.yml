@@ -1,0 +1,19 @@
+name: bot
+version: 0.1.0
+
+authors:
+  - bart <wojtowicz.bartlomiej@gmail.com>
+
+targets:
+  bot:
+    main: src/bot.cr
+
+crystal: 0.24.2
+
+license: MIT
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+  dotenv:
+    github: gdotdesign/cr-dotenv
