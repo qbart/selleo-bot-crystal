@@ -17,3 +17,11 @@ dependencies:
     github: kemalcr/kemal
   dotenv:
     github: gdotdesign/cr-dotenv
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    branch: master
+  mocks:
+    github: waterlink/mocks.cr
+    version: ~> 0.9

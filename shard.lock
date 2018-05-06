@@ -12,7 +12,19 @@ shards:
     github: jeromegn/kilt
     version: 0.4.0
 
+  mocks:
+    github: waterlink/mocks.cr
+    version: 0.9.5
+
   radix:
     github: luislavena/radix
     version: 0.3.8
+
+  singleton:
+    github: waterlink/singleton.cr
+    version: 1.0.0
+
+  webmock:
+    github: manastech/webmock.cr
+    commit: 7e7e7ff4d00afbb708909e1721e9f9bceddda726
 
