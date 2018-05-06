@@ -1,7 +1,7 @@
 require "openssl"
 
 class Bot::Apis::Slack
-  class ApiError < Exception
+  class Error < Exception
   end
 
   enum Color
@@ -11,6 +11,8 @@ class Bot::Apis::Slack
   end
 
   struct User
+    getter email
+    
     def initialize(@id : String, @email : String)
     end
   end
@@ -52,7 +54,7 @@ class Bot::Apis::Slack
     pull.read_object do |key|
       case key
       when "error"
-        raise ApiError.new(pull.read_string)
+        raise Error.new(pull.read_string)
       when "profile"
         pull.read_object do |profile|
           if profile == "email"
@@ -65,7 +67,7 @@ class Bot::Apis::Slack
       end
     end
 
-    raise ApiError.new("Email not found")
+    raise Error.new("Email not found")
   end
 
   private def handle(response)
@@ -73,7 +75,7 @@ class Bot::Apis::Slack
     when 200, 201
       yield
     else
-      raise ApiError.new("Error with Slack API communication")
+      raise Error.new("Error with Slack API communication")
     end
   end
 end
