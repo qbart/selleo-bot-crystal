@@ -19,7 +19,8 @@ post "/api/slack/cmd" do |env|
   rescue Bot::DetectHandler::NoHandlerErr
     halt env, 422, "Command not found"
   end
-  halt env, status_code: 500
+
+  nil
 end
 
 add_handler(Middlewares::SlackVerifier.new)

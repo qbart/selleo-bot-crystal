@@ -31,7 +31,7 @@ class Bot::Slack
     end
   end
 
-  def post_response(url : String, title : String, text : String, color : Color)
+  def post_response(url : String, title : String, text : String, color : Color, extra : String? = nil)
     json = JSON.build do |json|
       json.object do
         json.field "attachments" do
@@ -40,6 +40,16 @@ class Bot::Slack
               json.field "title", title
               json.field "text", text
               json.field "color", color.to_s.downcase
+              if !extra.nil?
+                json.field "fields" do
+                  json.array do
+                    json.object do
+                      json.field "value", extra
+                      json.field "short", false
+                    end
+                  end
+                end
+              end
             end
           end
         end

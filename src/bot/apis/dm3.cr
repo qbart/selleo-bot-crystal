@@ -8,7 +8,7 @@ class Bot::Dm3
   class Error < Exception
   end
 
-  def create_time_entries(email : String, happix : Int32, time_entries : Array(Bot::TimeEntry))
+  def create_time_entries(email : String, happix : Int32, time_entries : Array(Bot::TimeEntry)) : String
     body = JSON.build do |json|
       json.object do
         json.field "happix", happix
@@ -18,7 +18,8 @@ class Bot::Dm3
     headers = build_headers(email, body)
     response = HTTP::Client.post("#{ENV["DM_API_URL"]}/manage/v1/time_entries", headers: headers, body: body)
     handle response do
-      log response.inspect
+      json = JSON.parse(response.body)
+      json["meta"]["message"].as_s
     end
   end
 
