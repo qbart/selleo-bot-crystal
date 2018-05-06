@@ -1,5 +1,4 @@
 require "./../../spec_helper"
-require "./../../../src/bot/models/time_entry"
 
 describe Bot::TimeEntry do
   describe "#to_s" do

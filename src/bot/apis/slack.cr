@@ -1,6 +1,6 @@
 require "openssl"
 
-class Bot::Apis::Slack
+class Bot::Slack
   class Error < Exception
   end
 
@@ -67,7 +67,7 @@ class Bot::Apis::Slack
       end
     end
 
-    raise Error.new("Email not found")
+    raise Error.new("Slack API: Email not found")
   end
 
   private def handle(response)
@@ -75,7 +75,7 @@ class Bot::Apis::Slack
     when 200, 201
       yield
     else
-      raise Error.new("Error with Slack API communication")
+      raise Error.new("Slack API: Communication error")
     end
   end
 end

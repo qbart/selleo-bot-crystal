@@ -41,7 +41,7 @@ class Bot::Dm3
       yield
     else
       body = JSON.parse(response.body)
-      raise Error.new(body["errors"][0]["detail"].as_s)
+      raise Error.new("DM3 Error: #{body["errors"][0]["detail"].as_s}")
     end
   end
 end
