@@ -24,6 +24,10 @@ shards:
     github: waterlink/singleton.cr
     version: 1.0.0
 
+  spec-kemal:
+    github: kemalcr/spec-kemal
+    commit: 93ab608228ea6619d15555d1c77a3bcff29f1dba
+
   webmock:
     github: manastech/webmock.cr
     commit: 7e7e7ff4d00afbb708909e1721e9f9bceddda726

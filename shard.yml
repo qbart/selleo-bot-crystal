@@ -25,3 +25,6 @@ development_dependencies:
   mocks:
     github: waterlink/mocks.cr
     version: ~> 0.9
+  spec-kemal:
+    github: kemalcr/spec-kemal
+    branch: master

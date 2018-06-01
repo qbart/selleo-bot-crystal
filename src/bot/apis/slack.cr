@@ -12,13 +12,13 @@ class Bot::Slack
 
   struct User
     getter email
-    
+
     def initialize(@id : String, @email : String)
     end
   end
 
   def find_user(id : String)
-    client = HTTP::Client.new("slack.com", tls: true)
+    client = JsonClient.new("slack.com")
     encoded_params = HTTP::Params.build do |builder|
       builder.add "token", ENV["SLACK_ACCESS_TOKEN"]
       builder.add "user", id
@@ -56,7 +56,8 @@ class Bot::Slack
       end
     end
 
-    HTTP::Client.post(url, headers: HTTP::Headers{"Content-type" => "application/json"}, body: json)
+    response = JsonClient.send_post(url, json)
+    handle(response) {}
   end
 
   private def parse_email(body)
