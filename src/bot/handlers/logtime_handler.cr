@@ -17,7 +17,7 @@ module Bot
           "Success",
           "Happix: #{happix}\n#{success_message}",
           Slack::Color::Good,
-          command_log
+          command_log(happix, entries)
         )
 
       rescue ex : Logtime::ParseUserInput::Error | TimeEntry::ParseErr | Dm3::Error | Slack::Error
@@ -29,6 +29,10 @@ module Bot
           command_log
         )
       end
+    end
+
+    private def command_log(happix, entries)
+      "```#{ENV["SLACK_CMD"]} #{PREFIX}#{happix}\n#{entries.map(&.to_s).join("\n")}\n```"
     end
 
     private def command_log

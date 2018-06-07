@@ -11,14 +11,7 @@ module Bot
       slack.post_response_info(
         response_url,
         "List of commands:",
-        [help, logtime]
-      )
-    end
-
-    private def help
-      Slack::Attachment.new(
-        "Display help",
-        "#{ENV["SLACK_CMD"]} #{PREFIX}"
+        [logtime]
       )
     end
 
@@ -31,6 +24,11 @@ module Bot
           "#{ENV["SLACK_CMD"]} #{LogtimeHandler::PREFIX}3\n" \
           "2018-01-01 09:00 11:00 ticket-1\n" \
           "2018-01-01 11:00 17:00 ticket-2\n" \
+          "```\n" \
+          "```\n" \
+          "#{ENV["SLACK_CMD"]} #{LogtimeHandler::PREFIX}3\n" \
+          "09:00 11:00 ticket-1\n" \
+          "11:00 17:00 ticket-2\n" \
           "```"
       )
     end

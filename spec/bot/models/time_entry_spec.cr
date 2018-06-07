@@ -23,7 +23,7 @@ describe Bot::TimeEntry do
       entry.end_time.should eq "11:00"
       entry.details.should eq "hello world"
     end
-    
+
     it "parses time entry correctly ignoring whitespaces" do
       entry = Bot::TimeEntry.parse("\t  2018-01-01    09:00   11:00 \t  hello world \t   ")
 
@@ -31,6 +31,17 @@ describe Bot::TimeEntry do
       entry.start_time.should eq "09:00"
       entry.end_time.should eq "11:00"
       entry.details.should eq "hello world"
+    end
+
+    it "automatically adds current date if it is not specified" do
+      Timecop.travel(Time.new(2018, 1, 1, 12, 0, 0)) do
+        entry = Bot::TimeEntry.parse("09:00 11:00 hello world")
+
+        entry.date.should eq "2018-01-01"
+        entry.start_time.should eq "09:00"
+        entry.end_time.should eq "11:00"
+        entry.details.should eq "hello world"
+      end
     end
 
     it "raises exception when date is malformed" do

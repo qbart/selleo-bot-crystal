@@ -28,6 +28,10 @@ shards:
     github: kemalcr/spec-kemal
     commit: 93ab608228ea6619d15555d1c77a3bcff29f1dba
 
+  timecop:
+    github: TobiasGSmollett/timecop.cr
+    commit: b916d4eeffc7d77d17fd18d8dbbce6cfe1a6ea16
+
   webmock:
     github: manastech/webmock.cr
     commit: 7e7e7ff4d00afbb708909e1721e9f9bceddda726
