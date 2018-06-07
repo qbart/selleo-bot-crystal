@@ -1,18 +1,28 @@
 # bot
 
-TODO: Write a description here
+## Setup
 
-## Installation
+Install shards:
+```
+crystal deps
+```
 
-TODO: Write installation instructions here
+Run the app:
+```
+overmind s -f Procfile.dev
+# or
+heroku local -f Procfile.dev
+```
 
-## Usage
+Expose your bot so slack can send requests:
+```
+ngrok http 3000 -subdomain selleobot
+```
 
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
+Start DM3:
+```
+BOT_CLIENT_ID=12345 BOT_CLIENT_SECRET=secret rails s -p 3001
+```
 
 ## Contributors
 
