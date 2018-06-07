@@ -1,10 +1,12 @@
 class Bot::DetectHandler
   class NoHandlerErr < Exception
-  end 
+  end
 
   def self.detect(text)
-    if text.starts_with?(Bot::LogTimeHandler::PREFIX)
-      Bot::LogTimeHandler.new(text[Bot::LogTimeHandler::PREFIX.size..-1])
+    if text.starts_with?(Bot::LogtimeHandler::PREFIX)
+      Bot::LogtimeHandler.new(text[Bot::LogtimeHandler::PREFIX.size..-1])
+    elsif text.starts_with?(Bot::HelpHandler::PREFIX)
+      Bot::HelpHandler.new("")
     else
       raise NoHandlerErr.new("Invalid command")
     end

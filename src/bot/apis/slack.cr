@@ -10,6 +10,13 @@ class Bot::Slack
     Danger
   end
 
+  struct Attachment
+    getter title, text
+
+    def initialize(@title : String, @text : String)
+    end
+  end
+
   struct User
     getter email
 
@@ -29,6 +36,27 @@ class Bot::Slack
       email = parse_email(response.body)
       User.new(id, email)
     end
+  end
+
+  def post_response_info(url : String, title : String, attachments : Array(Attachment))
+    json = JSON.build do |json|
+      json.object do
+        json.field "text", title
+        json.field "attachments" do
+          json.array do
+            attachments.each do |attachment|
+              json.object do
+                json.field "title", attachment.title
+                json.field "text", attachment.text
+              end
+            end
+          end
+        end
+      end
+    end
+
+    response = JsonClient.send_post(url, json)
+    handle(response) {}
   end
 
   def post_response(url : String, title : String, text : String, color : Color, extra : String? = nil)

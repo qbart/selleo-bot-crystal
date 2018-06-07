@@ -1,7 +1,7 @@
 require "./base_handler"
 
 module Bot
-  class LogTimeHandler < BaseHandler
+  class LogtimeHandler < BaseHandler
     PREFIX = "logtime "
 
     def handle(user_id : String, response_url : String)
