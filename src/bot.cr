@@ -17,7 +17,7 @@ post "/api/slack/cmd" do |env|
       handle(params["user_id"], params["response_url"])
 
   rescue Bot::DetectHandler::NoHandlerErr
-    halt env, 422, "Command not found"
+    halt env, 200, "Invalid command. Use help.```\n#{ENV["SLACK_CMD"]} #{params["text"]}\n```"
   end
 
   nil
