@@ -12,9 +12,11 @@ end
 post "/api/slack/cmd" do |env|
   params = env.params.body
   begin
-    Bot::DetectHandler.
-      detect(params["text"]).
-      handle(params["user_id"], params["response_url"])
+    handler = Bot::DetectHandler.detect(params["text"])
+    Bot::Slack.new.post_response_info(params["response_url"], "Processing..")
+    spawn do
+      handler.handle(params["user_id"], params["response_url"])
+    end
 
   rescue Bot::DetectHandler::NoHandlerErr
     halt env, 200, "Invalid command. Use help.```\n#{ENV["SLACK_CMD"]} #{params["text"]}\n```"

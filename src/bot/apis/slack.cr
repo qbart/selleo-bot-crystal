@@ -38,7 +38,7 @@ class Bot::Slack
     end
   end
 
-  def post_response_info(url : String, title : String, attachments : Array(Attachment))
+  def post_response_info(url : String, title : String, attachments : Array(Attachment) = [] of Attachment)
     json = JSON.build do |json|
       json.object do
         json.field "text", title
