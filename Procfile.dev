@@ -1,1 +1,1 @@
-bot: crystal run src/bot.cr
+web: crystal run src/bot.cr

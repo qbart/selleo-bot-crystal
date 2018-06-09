@@ -1,1 +1,1 @@
-bot: ./bot
+web: ./bot
